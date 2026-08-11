@@ -12,8 +12,34 @@
     <header>
         <h1>Quadro de Tarefas</h1>
     </header>
+    <main>
 
-    
+        <form action="">
+            <fieldset>
+                <legend>Filtros de busca:</legend>
+                <label for="titulo">Título da obra:</label>
+                <input id="titulo" type="search" placeholder="título">
+
+                <label for="prioridade">Prioridade da tarefa:</label>
+                <select name="Prioridade" id="prioridade">
+                    <option value="baixa">Baixa</option>
+                    <option value="media">Média</option>
+                    <option value="alta">Alta</option>
+                </select>
+
+                <label for="status">Status da tarefa:</label>
+                <select name="status" id="status">
+                    <option value="afazer">A fazer</option>
+                    <option value="emandamento">Em andamento</option>
+                    <option value="emrevisao">Em revisão</option>
+                    <option value="concluida">Concluída</option>
+                </select>
+
+                <button type="submit">Filtrar</button>
+            </fieldset>
+        </form>
+
 
 </body>
+
 </html>
