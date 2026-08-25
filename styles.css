@@ -90,3 +90,199 @@ footer p {
     font-size: 0.875rem;
     color: var(--color-text-muted);
 }
+
+main {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    width: 100%;
+    max-width: 100rem;
+    margin-inline: auto;
+}
+
+main > form {
+    grid-column: 1 / -1;
+}
+
+main > section {
+    min-width: 0;
+}
+
+main > form {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-md);
+}
+
+fieldset {
+    border: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+legend {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    padding-bottom: var(--space-xs);
+    color: var(--color-text);
+}
+
+form label {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    display: block;
+    margin-bottom: var(--space-xs);
+}
+
+form input,
+form select {
+    width: 100%;
+    min-height: 2.75rem;
+    padding-inline: var(--space-sm);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background-color: var(--color-surface);
+    font-size: 1rem;
+}
+
+form button {
+    min-height: 2.75rem;
+    min-width: 2.75rem;
+    padding-inline: var(--space-md);
+    align-self: flex-start;
+    background-color: var(--color-accent);
+    color: var(--color-accent-contrast);
+    border: none;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+form button:hover {
+    filter: brightness(0.92);
+}
+
+main > section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    background-color: var(--color-surface-alt);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-sm);
+}
+
+main > section h2 {
+    font-size: clamp(1rem, 0.85rem + 0.5vw, 1.1875rem);
+    padding-bottom: var(--space-xs);
+    border-bottom: 0.1875rem solid var(--color-border);
+}
+
+section[aria-labelledby="titulo-afazer"] h2 {
+    color: var(--status-afazer);
+    border-bottom-color: var(--status-afazer);
+}
+
+section[aria-labelledby="titulo-emandamento"] h2 {
+    color: var(--status-andamento);
+    border-bottom-color: var(--status-andamento);
+}
+
+section[aria-labelledby="titulo-emrevisao"] h2 {
+    color: var(--status-revisao);
+    border-bottom-color: var(--status-revisao);
+}
+
+section[aria-labelledby="titulo-concluida"] h2 {
+    color: var(--status-concluida);
+    border-bottom-color: var(--status-concluida);
+}
+
+main > section ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+main > section ul li {
+    min-width: 0;
+}
+
+article {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    min-height: 9rem;
+    min-width: 0;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-left-width: 0.3rem;
+    border-radius: var(--radius);
+    padding: var(--space-sm);
+}
+
+section[aria-labelledby="titulo-afazer"] article {
+    border-left-color: var(--status-afazer);
+}
+
+section[aria-labelledby="titulo-emandamento"] article {
+    border-left-color: var(--status-andamento);
+}
+
+section[aria-labelledby="titulo-emrevisao"] article {
+    border-left-color: var(--status-revisao);
+}
+
+section[aria-labelledby="titulo-concluida"] article {
+    border-left-color: var(--status-concluida);
+}
+
+article h3 {
+    order: 1;
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: clamp(0.9375rem, 0.85rem + 0.3vw, 1.0625rem);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+article p:nth-of-type(1),
+article p:nth-of-type(2) {
+    order: 2;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+article p:nth-of-type(2) {
+    order: 3;
+}
+
+article p:nth-of-type(4) {
+    order: 4;
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.5rem;
+    padding-inline: var(--space-sm);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background-color: var(--color-surface-alt);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+article p:nth-of-type(3) {
+    order: 5;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+}
