@@ -44,3 +44,24 @@ select {
 h1, h2, h3, p, label {
     overflow-wrap: break-word;
 }
+
+:root {
+    --color-bg: #f3f4f6;
+    --color-surface: #ffffff;
+    --color-surface-alt: #eef0f3;
+    --color-text: #1f2430;
+    --color-text-muted: #475569;
+    --color-border: #d1d5db;
+    --color-accent: #0f766e;
+    --color-accent-contrast: #ffffff;
+    --color-focus: #4338ca;
+    --status-afazer: #1d4ed8;
+    --status-andamento: #b45309;
+    --status-revisao: #6d28d9;
+    --status-concluida: #15803d;
+    --space-xs: 0.375rem;
+    --space-sm: 0.75rem;
+    --space-md: 1.25rem;
+    --space-lg: 2rem;
+    --radius: 0.5rem;
+}
