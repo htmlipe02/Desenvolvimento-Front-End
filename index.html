@@ -6,6 +6,7 @@
     <meta name="author" content="Euripedes Rocha">
     <title>Quadro de Tarefas</title>
     <link rel="stylesheet" href="styles.css">
+    <script type="module" src="js/app.js"></script>
 </head>
 
 <body>
@@ -18,7 +19,7 @@
         <form action="">
             <fieldset>
                 <legend>Filtros de busca:</legend>
-                <label for="titulo">Título da obra:</label>
+                <label for="titulo">Título da tarefa:</label>
                 <input id="titulo" type="search" placeholder="Título">
 
                 <label for="prioridade">Prioridade da tarefa:</label>
@@ -30,6 +31,7 @@
 
                 <label for="status">Status da tarefa:</label>
                 <select name="status" id="status">
+                    <option value="">Todos</option>
                     <option value="afazer">A fazer</option>
                     <option value="emandamento">Em andamento</option>
                     <option value="emrevisao">Em revisão</option>
@@ -41,104 +43,22 @@
         </form>
         <section aria-labelledby="titulo-afazer">
             <h2 id="titulo-afazer"> Tarefas a fazer</h2>
-
-            <ul>
-                <li>
-                    <article>
-                        <h3>Organizador de tarefas</h3>
-                        <p>Projeto: projeto em HTML</p>
-                        <p>Responsável: Ana</p>
-                        <p>Prazo: 18/10</p>
-                        <p>Prioriade: Baixa</p>
-                    </article>
-                </li>
-
-                <li>
-                    <article>
-                        <h3>Planner</h3>
-                        <p>Projeto: projeto em HTML com CSS</p>
-                        <p>Responsável: Lucas</p>
-                        <p>Prazo: 20/08</p>
-                        <p>Prioriade: Média</p>
-                    </article>
-                </li>
-            </ul>
+            <ul data-lista-status="a-fazer"></ul>
         </section>
 
         <section aria-labelledby="titulo-emandamento">
             <h2 id="titulo-emandamento"> Tarefas em andamento</h2>
-            <ul>
-                <li>
-                    <article>
-                        <h3>Cronometro para cozinha</h3>
-                        <p>Projeto: projeto em Python</p>
-                        <p>Responsável: Maria</p>
-                        <p>Prazo: 14/08</p>
-                        <p>Prioriade: Média</p>
-                    </article>
-                </li>
-
-                <li>
-                    <article>
-                        <h3>Automação com calendário</h3>
-                        <p>Projeto: projeto em Python</p>
-                        <p>Responsável: Marta</p>
-                        <p>Prazo: 15/08</p>
-                        <p>Prioriade: Alta</p>
-                    </article>
-                </li>
-            </ul>
+            <ul data-lista-status="em-andamento"></ul>
         </section>
 
         <section aria-labelledby="titulo-emrevisao">
             <h2 id="titulo-emrevisao"> Tarefas em revisão</h2>
-            <ul>
-                <li>
-                    <article>
-                        <h3>Criação de bot para vendas</h3>
-                        <p>Projeto: projeto em Python</p>
-                        <p>Responsável: Carlos</p>
-                        <p>Prazo: 20/09</p>
-                        <p>Prioriade: Alta</p>
-                    </article>
-                </li>
-
-                <li>
-                    <article>
-                        <h3>Blog de Lego</h3>
-                        <p>Projeto: projeto em HTML e CSS</p>
-                        <p>Responsável: Fernanda</p>
-                        <p>Prazo: 22/10</p>
-                        <p>Prioriade: Média</p>
-                    </article>
-                </li>
-            </ul>
+            <ul data-lista-status="em-revisao"></ul>
         </section>
 
         <section aria-labelledby="titulo-concluida">
             <h2 id="titulo-concluida"> Tarefas concluida</h2>
-            <ul>
-                <li>
-                    <article>
-                        <h3>Blog de gatos</h3>
-                        <p>Projeto: projeto em HTML e CSS</p>
-                        <p>Responsável: Sueli</p>
-                        <p>Prazo: 30/08</p>
-                        <p>Prioriade: Baixa</p>
-                    </article>
-                </li>
-
-                <li>
-                    <article>
-                        <h3>Simulador de Batalhas Brawlhalla</h3>
-                        <p>Projeto: projeto em Python</p>
-                        <p>Responsável: Elisa</p>
-                        <p>Prazo: 22/08</p>
-                        <p>Prioriade: Baixa</p>
-                    </article>
-                </li>
-            </ul>
-
+            <ul data-lista-status="concluida"></ul>
         </section>
 
     </main>
