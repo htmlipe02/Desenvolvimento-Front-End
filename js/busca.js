@@ -1,36 +1,29 @@
 /**
- *
- *
- * @param {Array} tarefas
- * @param {Object} opcoes
- * @param {string} [opcoes.titulo]
- * @param {string} [opcoes.prioridade]
- * @param {string} [opcoes.status]
- * @param {string} [opcoes.ordemPrazo]
+ * @param {Object} estado
+ * @param {Array}  estado.tarefas
+ * @param {string} estado.busca
+ * @param {string} estado.status
+ * @param {string} estado.prioridade
+ * @param {string} estado.ordenacao
+ * @returns {Array}
  */
-export function filtrarTarefas(tarefas, { titulo = '', prioridade = '', status = '', ordemPrazo = '' }) {
-  const tituloBusca = titulo.trim().toLowerCase();
+export function obterTarefasVisiveis(estado) {
+  const tituloBusca = estado.busca.trim().toLowerCase();
 
-  const tarefasFiltradas = tarefas.filter((tarefa) => {
+  const tarefasFiltradas = estado.tarefas.filter((tarefa) => {
     const bateTitulo = !tituloBusca || tarefa.titulo.toLowerCase().includes(tituloBusca);
-    const batePrioridade = !prioridade || tarefa.prioridade.toLowerCase() === prioridade.toLowerCase();
-    const bateStatus = !status || tarefa.status === status;
+    const bateStatus = estado.status === 'todos' || tarefa.status === estado.status;
+    const batePrioridade = estado.prioridade === 'todas' || tarefa.prioridade === estado.prioridade;
 
-    return bateTitulo && batePrioridade && bateStatus;
+    return bateTitulo && bateStatus && batePrioridade;
   });
 
-  if (!ordemPrazo) {
-    return tarefasFiltradas;
-  }
-
-  return [...tarefasFiltradas].sort((tarefaA, tarefaB) => {
+  const tarefasOrdenadas = [...tarefasFiltradas].sort((tarefaA, tarefaB) => {
     const prazoA = new Date(tarefaA.prazo);
     const prazoB = new Date(tarefaB.prazo);
 
-    if (ordemPrazo === 'crescente') return prazoA - prazoB;
-    if (ordemPrazo === 'decrescente') return prazoB - prazoA;
-    return 0;
-    
+    return estado.ordenacao === 'prazo-desc' ? prazoB - prazoA : prazoA - prazoB;
   });
 
+  return tarefasOrdenadas;
 }
