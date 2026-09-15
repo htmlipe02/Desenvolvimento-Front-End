@@ -1,4 +1,3 @@
-
 export function criarCartao(tarefa) {
   const artigo = document.createElement('article');
   artigo.dataset.id = tarefa.id;
@@ -7,10 +6,10 @@ export function criarCartao(tarefa) {
   titulo.textContent = tarefa.titulo;
 
   const projeto = document.createElement('p');
-  projeto.textContent = `Projeto: ${tarefa.projeto}`;
+  projeto.textContent = `Projeto: ${tarefa.projeto ?? '—'}`;
 
   const responsavel = document.createElement('p');
-  responsavel.textContent = `Responsável: ${tarefa.responsavel}`;
+  responsavel.textContent = `Responsável: ${tarefa.responsavel ?? '—'}`;
 
   const prazo = document.createElement('p');
   prazo.textContent = `Prazo: ${tarefa.prazo}`;
