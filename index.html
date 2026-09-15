@@ -6,7 +6,7 @@
     <meta name="author" content="Euripedes Rocha">
     <title>Quadro de Tarefas</title>
     <link rel="stylesheet" href="styles.css">
-    <script type="module" src="js/app.js"></script>
+    <script type="module" src="app.js"></script>
 </head>
 
 <body>
@@ -15,35 +15,41 @@
         <h1>Quadro de Tarefas</h1>
     </header>
     
-    <p id="status-regiao" class="sr-only" aria-live="polite"></p>
+    <p id="status-regiao" class="feedback" role="status" aria-live="polite"></p>
 
     <main>
 
 
-        <form action="">
+        <form>
             <fieldset>
                 <legend>Filtros de busca:</legend>
                 <label for="titulo">Título da tarefa:</label>
-                <input id="titulo" type="search" placeholder="Título">
+                <input id="titulo" type="search" placeholder="Título" autocomplete="off">
 
                 <label for="prioridade">Prioridade da tarefa:</label>
-                <select name="Prioridade" id="prioridade">
-                    <option value="">Todas</option>
+                <select id="prioridade">
+                    <option value="todas">Todas</option>
                     <option value="baixa">Baixa</option>
                     <option value="media">Média</option>
                     <option value="alta">Alta</option>
                 </select>
 
                 <label for="status">Status da tarefa:</label>
-                <select name="status" id="status">
-                    <option value="">Todos</option>
-                    <option value="afazer">A fazer</option>
-                    <option value="emandamento">Em andamento</option>
-                    <option value="emrevisao">Em revisão</option>
+                <select id="status">
+                    <option value="todos">Todos</option>
+                    <option value="a-fazer">A fazer</option>
+                    <option value="em-andamento">Em andamento</option>
+                    <option value="em-revisao">Em revisão</option>
                     <option value="concluida">Concluída</option>
                 </select>
 
-                <button type="submit">Filtrar</button>
+                <label for="ordenacao">Ordenar por prazo:</label>
+                <select id="ordenacao">
+                    <option value="prazo">Mais próximo primeiro</option>
+                    <option value="prazo-desc">Mais distante primeiro</option>
+                </select>
+
+                <button type="button" id="limpar-filtros">Limpar filtros</button>
             </fieldset>
         </form>
         <section aria-labelledby="titulo-afazer">
