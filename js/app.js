@@ -1,28 +1,28 @@
-
+import { estado, restaurarFiltrosPadrao } from './estado.js';
 import { carregarTarefas } from './api.js';
-import { filtrarTarefas } from './busca.js';
-import { renderizarEstado } from './estados.js';
+import { obterTarefasVisiveis } from './busca.js';
+import { renderizarFeedback } from './estados.js';
 import { renderizarTarefas } from './renderizacao.js';
-
 
 const quadro = document.querySelector('main');
 
+function renderizar() {
+  const tarefasVisiveis = obterTarefasVisiveis(estado);
 
-let tarefas = [];
+  renderizarTarefas(tarefasVisiveis, quadro);
+  renderizarFeedback(estado, tarefasVisiveis.length);
+}
 
-function instalarEventosDoQuadro(quadro) {
+function instalarEventosDoQuadro() {
   quadro.addEventListener('click', (evento) => {
     const botao = evento.target.closest('[data-acao="ver-detalhes"]');
-
-
     if (!botao || !quadro.contains(botao)) return;
 
     const cartao = botao.closest('article');
     if (!cartao) return;
 
     const id = cartao.dataset.id;
-    const tarefa = tarefas.find((t) => String(t.id) === String(id));
-
+    const tarefa = estado.tarefas.find((t) => String(t.id) === String(id));
 
     if (tarefa) {
       console.log(tarefa);
@@ -30,54 +30,57 @@ function instalarEventosDoQuadro(quadro) {
   });
 }
 
-
-const mapaStatusSelect = {
-  afazer: 'a-fazer',
-  emandamento: 'em-andamento',
-  emrevisao: 'em-revisao',
-  concluida: 'concluida',
-};
-
-function instalarFiltro(quadro) {
+function instalarEventosDeFiltro() {
+  const campoTitulo = document.querySelector('#titulo');
+  const campoPrioridade = document.querySelector('#prioridade');
+  const campoStatus = document.querySelector('#status');
+  const campoOrdenacao = document.querySelector('#ordenacao');
+  const botaoLimpar = document.querySelector('#limpar-filtros');
   const formulario = document.querySelector('main > form');
-  if (!formulario) return;
 
-  formulario.addEventListener('submit', (evento) => {
-    evento.preventDefault();
-
-    const titulo = document.querySelector('#titulo').value;
-    const statusSelecionado = document.querySelector('#status').value;
-    const status = mapaStatusSelect[statusSelecionado] ?? statusSelecionado;
-    const prioridade = document.querySelector('#prioridade').value;
-
-    const tarefasFiltradas = filtrarTarefas(tarefas, { titulo, prioridade, status });
-
-    renderizarTarefas(tarefasFiltradas, quadro);
+  campoTitulo.addEventListener('input', (evento) => {
+    estado.busca = evento.target.value;
+    renderizar();
   });
+
+  campoPrioridade.addEventListener('change', (evento) => {
+    estado.prioridade = evento.target.value;
+    renderizar();
+  });
+
+  campoStatus.addEventListener('change', (evento) => {
+    estado.status = evento.target.value;
+    renderizar();
+  });
+
+  campoOrdenacao.addEventListener('change', (evento) => {
+    estado.ordenacao = evento.target.value;
+    renderizar();
+  });
+
+  botaoLimpar.addEventListener('click', () => {
+    restaurarFiltrosPadrao();
+
+    campoTitulo.value = '';
+    campoPrioridade.value = estado.prioridade;
+    campoStatus.value = estado.status;
+    campoOrdenacao.value = estado.ordenacao;
+
+    renderizar();
+  });
+
+  formulario?.addEventListener('submit', (evento) => evento.preventDefault());
 }
 
 async function inicializar() {
-  instalarEventosDoQuadro(quadro);
-  instalarFiltro(quadro);
+  instalarEventosDoQuadro();
+  instalarEventosDeFiltro();
 
-  renderizarEstado('carregando', quadro);
+  const promessaCarregamento = carregarTarefas(estado);
+  renderizar();
 
-  try {
-    tarefas = await carregarTarefas();
-
-    if (tarefas.length === 0) {
-      renderizarEstado('vazio', quadro);
-    } else {
-      renderizarEstado('sucesso', quadro, tarefas);
-    }
-  } catch (erro) {
-    renderizarEstado('erro', quadro, erro.message);
-  }
-
-  window.tarefas = tarefas;
-  window.quadro = quadro;
-  window.renderizarTarefas = renderizarTarefas;
+  await promessaCarregamento;
+  renderizar();
 }
-
 
 inicializar();
