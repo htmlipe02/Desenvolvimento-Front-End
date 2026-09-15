@@ -14,7 +14,11 @@
     <header>
         <h1>Quadro de Tarefas</h1>
     </header>
+    
+    <p id="status-regiao" class="sr-only" aria-live="polite"></p>
+
     <main>
+
 
         <form action="">
             <fieldset>
@@ -24,6 +28,7 @@
 
                 <label for="prioridade">Prioridade da tarefa:</label>
                 <select name="Prioridade" id="prioridade">
+                    <option value="">Todas</option>
                     <option value="baixa">Baixa</option>
                     <option value="media">Média</option>
                     <option value="alta">Alta</option>
