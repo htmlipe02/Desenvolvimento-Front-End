@@ -78,6 +78,21 @@ h1, h2, h3, p, label {
     --radius: 0.5rem;
 }
 
+.feedback {
+    margin-inline: var(--space-md);
+    padding: var(--space-sm) var(--space-md);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+}
+
+.feedback:empty {
+    display: none;
+}
+
 header {
     background-color: var(--color-surface);
     border-bottom: 1px solid var(--color-border);
@@ -176,6 +191,17 @@ form button {
 
 form button:hover {
     filter: brightness(0.92);
+}
+
+#limpar-filtros {
+    background-color: transparent;
+    color: var(--color-accent);
+    border: 1px solid var(--color-accent);
+}
+
+#limpar-filtros:hover {
+    background-color: var(--color-surface-alt);
+    filter: none;
 }
 
 main > section {
