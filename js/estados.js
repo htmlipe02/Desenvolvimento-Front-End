@@ -1,26 +1,32 @@
-import { renderizarTarefas } from './renderizacao.js';
-
 /**
- * @param {'carregando'|'sucesso'|'vazio'|'erro'} estado
- * @param {HTMLElement} quadro
- * @param {Array|string|null} dados
+ * @param {Object} estado
+ * @param {number} totalVisivel
  */
-export function renderizarEstado(estado, quadro, dados = null) {
-  const statusRegiao = document.getElementById('status-regiao');
-  if (!statusRegiao || !quadro) return;
+export function renderizarFeedback(estado, totalVisivel) {
+  const regiaoStatus = document.getElementById('status-regiao');
+  if (!regiaoStatus) return;
 
-  if (estado === 'carregando') {
-    statusRegiao.textContent = 'Carregando tarefas...';
-  } else if (estado === 'sucesso') {
-    const total = dados ? dados.length : 0;
-    statusRegiao.textContent = `${total} tarefas carregadas com sucesso.`;
-    renderizarTarefas(dados, quadro);
-  } else if (estado === 'vazio') {
-    statusRegiao.textContent = 'Nenhuma tarefa encontrada no sistema.';
-    renderizarTarefas([], quadro);
-  } else if (estado === 'erro') {
-    statusRegiao.textContent = `Erro ao carregar o quadro: ${dados}`;
-    
+  const totalOriginal = estado.tarefas.length;
+
+  if (estado.carregamento) {
+    regiaoStatus.textContent = 'Carregando tarefas...';
+    return;
   }
 
+  if (estado.erro !== null) {
+    regiaoStatus.textContent = `Erro ao carregar o quadro: ${estado.erro}`;
+    return;
+  }
+
+  if (totalOriginal === 0) {
+    regiaoStatus.textContent = 'Nenhuma tarefa encontrada no sistema.';
+    return;
+  }
+
+  if (totalVisivel === 0) {
+    regiaoStatus.textContent = 'Nenhuma tarefa corresponde aos filtros aplicados. Tente limpar os filtros.';
+    return;
+  }
+
+  regiaoStatus.textContent = `${totalVisivel} de ${totalOriginal} tarefas`;
 }
