@@ -3,8 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Euripedes Rocha">
-    <title>Quadro de Tarefas</title>
+    <meta name="description" content="Grimório de Tarefas de Oz — um quadro mágico para acompanhar feitiços a fazer, em preparo, em julgamento e consagrados.">
+    <title>Grimório de Tarefas de Oz</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="styles.css">
     <script type="module" src="app.js"></script>
 </head>
@@ -12,74 +19,75 @@
 <body>
 
     <header>
-        <h1>Quadro de Tarefas</h1>
+        <p class="header-eyebrow">Um grimório vivo de Oz</p>
+        <h1>Grimório de Tarefas</h1>
+        <p class="header-legenda">Da Cidade Esmeralda até os campos de Munchkinland, cada feitiço tem sua fase.</p>
     </header>
-    
+
     <p id="status-regiao" class="feedback" role="status" aria-live="polite"></p>
 
     <main>
 
-
         <form>
             <fieldset>
-                <legend>Filtros de busca:</legend>
-                <label for="titulo">Título da tarefa:</label>
-                <input id="titulo" type="search" placeholder="Título" autocomplete="off">
+                <legend>Círculo de busca</legend>
 
-                <label for="prioridade">Prioridade da tarefa:</label>
+                <label for="titulo">Nome do feitiço:</label>
+                <input id="titulo" type="search" placeholder="Buscar pelo título..." autocomplete="off">
+
+                <label for="prioridade">Poder do feitiço:</label>
                 <select id="prioridade">
-                    <option value="todas">Todas</option>
-                    <option value="baixa">Baixa</option>
-                    <option value="media">Média</option>
-                    <option value="alta">Alta</option>
+                    <option value="todas">Todos os poderes</option>
+                    <option value="baixa">Poder menor</option>
+                    <option value="media">Poder médio</option>
+                    <option value="alta">Poder maior</option>
                 </select>
 
-                <label for="status">Status da tarefa:</label>
+                <label for="status">Fase do encantamento:</label>
                 <select id="status">
-                    <option value="todos">Todos</option>
-                    <option value="a-fazer">A fazer</option>
-                    <option value="em-andamento">Em andamento</option>
-                    <option value="em-revisao">Em revisão</option>
-                    <option value="concluida">Concluída</option>
+                    <option value="todos">Todas as fases</option>
+                    <option value="a-fazer">A enfeitiçar</option>
+                    <option value="em-andamento">Conjurando</option>
+                    <option value="em-revisao">Em julgamento</option>
+                    <option value="concluida">Consagrada</option>
                 </select>
 
-                <label for="ordenacao">Ordenar por prazo:</label>
+                <label for="ordenacao">Ordenar pelo prazo:</label>
                 <select id="ordenacao">
-                    <option value="prazo">Mais próximo primeiro</option>
-                    <option value="prazo-desc">Mais distante primeiro</option>
+                    <option value="prazo">Lua mais próxima primeiro</option>
+                    <option value="prazo-desc">Lua mais distante primeiro</option>
                 </select>
 
-                <button type="button" id="limpar-filtros">Limpar filtros</button>
+                <button type="button" id="limpar-filtros">Desfazer o feitiço de busca</button>
             </fieldset>
         </form>
+
         <section aria-labelledby="titulo-afazer">
-            <h2 id="titulo-afazer"> Tarefas a fazer</h2>
+            <h2 id="titulo-afazer">A enfeitiçar</h2>
             <ul data-lista-status="a-fazer"></ul>
         </section>
 
         <section aria-labelledby="titulo-emandamento">
-            <h2 id="titulo-emandamento"> Tarefas em andamento</h2>
+            <h2 id="titulo-emandamento">Conjurando</h2>
             <ul data-lista-status="em-andamento"></ul>
         </section>
 
         <section aria-labelledby="titulo-emrevisao">
-            <h2 id="titulo-emrevisao"> Tarefas em revisão</h2>
+            <h2 id="titulo-emrevisao">Em julgamento</h2>
             <ul data-lista-status="em-revisao"></ul>
         </section>
 
         <section aria-labelledby="titulo-concluida">
-            <h2 id="titulo-concluida"> Tarefas concluida</h2>
+            <h2 id="titulo-concluida">Consagradas</h2>
             <ul data-lista-status="concluida"></ul>
         </section>
 
     </main>
 
-</body>
+    <footer>
+        <p>✦ Euripedes Rocha Neto — Feiticeiro do Front-End ✦</p>
+    </footer>
 
-<footer>
-    <p>
-        &star; Euripedes Rocha Neto -- Desenvolvimento Front-End &star;
-    </p>
-</footer>
+</body>
 
 </html>
